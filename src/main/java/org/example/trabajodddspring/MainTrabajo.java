@@ -3,7 +3,7 @@ package org.example.trabajodddspring;
 
 import org.example.trabajodddspring.AgregadoAventura.mainAventuras;
 import org.example.trabajodddspring.AgregadoGrupoJuego.mainGrupoJuego;
-import org.example.trabajodddspring.AgregadoJugador.mainJugador;
+import org.example.trabajodddspring.AgregadoJugador.main.mainJugador;
 import org.example.trabajodddspring.AgregadoPersonaje.mainPersonajes;
 
 import java.util.InputMismatchException;

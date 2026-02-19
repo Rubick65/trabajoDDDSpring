@@ -1,9 +1,39 @@
 package org.example.trabajodddspring.AgregadoJugador;
 
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.Objects;
 
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@Table(
+        name = "DireccionJuego",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"piso", "codigoPostal", "calle"})
+        }
+)
 public class DireccionJuego {
-    private String ciudad, calle, piso, codigoPostal;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idDireccion;
+
+    @Column(nullable = false)
+    private String piso;
+
+    @Column(nullable = false)
+    private String ciudad;
+
+    @Column(nullable = false)
+    private String calle;
+
+    @Column(nullable = false)
+    private String codigoPostal;
 
     /**
      * Constructor por defecto para los atributos
@@ -20,42 +50,8 @@ public class DireccionJuego {
     }
 
     /**
-     * Constructor por defecto para poder parsear los datos del json
-     */
-    public DireccionJuego() {
-    }
-
-    // Getters y Setters de los atributos
-    public String getCiudad() {
-        return ciudad;
-    }
-
-    private void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
-    }
-
-    public String getCalle() {
-        return calle;
-    }
-
-    private void setCalle(String calle) {
-        this.calle = calle;
-    }
-
-    public String getPiso() {
-        return piso;
-    }
-
-    private void setPiso(String piso) {
-        this.piso = piso;
-    }
-
-    public String getCodigoPostal() {
-        return codigoPostal;
-    }
-
-    /**
      * Comprueba que el código postal tenga exactamente 5 números
+     *
      * @param codigoPostal Codigo postal de la dirección
      * @throws IllegalArgumentException Lanza esta excepción en caso de que el código postal no sea válido
      */

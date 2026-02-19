@@ -1,14 +1,31 @@
 package org.example.trabajodddspring.AgregadoJugador;
 
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.Objects;
 
 
 // Anotaciones necesarias para poder parsear tanto Jugadores como clases hijo
-
+@Entity
+@Table(name = "Jugador")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Jugador {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID_JUGADOR;// Id del jugador
+
+    @Column(nullable = false, unique = true)
     private String DNI; // DNI del jugador
+    @Column(nullable = false)
     private String nombre; // Nombre del jugador
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_DIRECCION")
     private DireccionJuego direccionJuego;// Dirección del jugador
 
     /**
@@ -24,40 +41,15 @@ public class Jugador {
         setDireccionJuego(direccionJuego);
     }
 
-
-    // Getters y Setters de los atributos
-    public String getDNI() {
-        return DNI;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public int getID_JUGADOR() {
-        return ID_JUGADOR;
-    }
-
-    public void setID_JUGADOR(int ID_JUGADOR) {
-        this.ID_JUGADOR = ID_JUGADOR;
-    }
-
     /**
      * Setter que comprueba que el nombre pasado como parámetro no esté vacío
+     *
      * @param nombre Nombre del jugador
      */
     public void setNombre(String nombre) {
         if (nombre.trim().isEmpty())
             throw new IllegalArgumentException("El nombre no puede estar vacío");
         this.nombre = nombre;
-    }
-
-    public DireccionJuego getDireccionJuego() {
-        return direccionJuego;
-    }
-
-    public void setDireccionJuego(DireccionJuego direccionJuego) {
-        this.direccionJuego = direccionJuego;
     }
 
     /**
@@ -75,10 +67,10 @@ public class Jugador {
         return DNI;
     }
 
-
     /**
      * Compara un jugador con este por el DNI
-     * @param o   the reference object with which to compare.
+     *
+     * @param o the reference object with which to compare.
      * @return Devuleve true si son iguales y false en caso contrario
      */
     @Override

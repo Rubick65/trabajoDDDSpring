@@ -1,10 +1,15 @@
-package org.example.trabajodddspring.AgregadoJugador;
+package org.example.trabajodddspring.AgregadoJugador.main;
 
 
 import org.example.trabajodddspring.AgregadoGrupoJuego.Repositorio.RepoGrupoJuego;
+import org.example.trabajodddspring.AgregadoJugador.DireccionJuego;
+import org.example.trabajodddspring.AgregadoJugador.DirectorDeJuego;
+import org.example.trabajodddspring.AgregadoJugador.Jugador;
 import org.example.trabajodddspring.AgregadoJugador.Repositorio.RepoJugador;
 import org.example.trabajodddspring.AgregadoPersonaje.Personaje;
 import org.example.trabajodddspring.AgregadoPersonaje.Repositorio.RepoPersonaje;
+import org.example.trabajodddspring.Servicio.ServicioJugador;
+import org.springframework.boot.CommandLineRunner;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,13 +17,22 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-public class mainJugador {
+public class mainJugador implements CommandLineRunner {
     static Scanner teclado = new Scanner(System.in);
     static List<Jugador> jugs = new ArrayList<>();
+    private final ServicioJugador servicioJugador;
+
+    public mainJugador(ServicioJugador servicioJugador) {
+        this.servicioJugador = servicioJugador;
+    }
+
+    @Override
+    public void run(String... args) {
+        menuPrincipal();
+    }
 
     public static void main(String[] args) {
         try {
-            RepoJugador repoJugador = new RepoJugador();
             RepoGrupoJuego repoGrupoJuego = new RepoGrupoJuego();
             RepoPersonaje repoPersonaje = new RepoPersonaje();
 
@@ -394,6 +408,5 @@ public class mainJugador {
             System.out.println(jugador);
         }
     }
-
 }
 

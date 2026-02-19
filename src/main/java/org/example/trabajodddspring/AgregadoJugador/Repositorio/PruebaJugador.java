@@ -1,56 +1,42 @@
 package org.example.trabajodddspring.AgregadoJugador.Repositorio;
 
-
 import org.example.trabajodddspring.AgregadoJugador.DireccionJuego;
 import org.example.trabajodddspring.AgregadoJugador.Jugador;
+import org.example.trabajodddspring.Servicio.ServicioJugador;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
-import java.io.IOException;
+@Component
+public class PruebaJugador implements CommandLineRunner {
 
-public class PruebaJugador {
-    public static void main(String[] args) {
+    private final ServicioJugador servicioJugador;
+
+    // Spring inyecta el servicio automáticamente
+    public PruebaJugador(ServicioJugador servicioJugador) {
+        this.servicioJugador = servicioJugador;
+    }
+
+    @Override
+    public void run(String... args) {
         try {
-            RepoJugador repoJugador = new RepoJugador();
-            System.out.println(repoJugador.count());
+            System.out.println("Cantidad de jugadores en la base: " + servicioJugador.count());
 
+            // Crear una dirección de juego
             DireccionJuego direccionJuego = new DireccionJuego("Luna", "Jose manual", "1C", "29024");
 
+            // Crear un jugador normal
             Jugador jugador1 = new Jugador("02790162D", "Pedro", direccionJuego);
 
-//            DirectorDeJuego jugador = new DirectorDeJuego("02790162D", "Jose", direccionJuego);
+            // Guardar jugador usando el servicio
+            servicioJugador.save(jugador1);
 
-            repoJugador.save(jugador1);
-            repoJugador.findAllToList().forEach(System.out::println);
+            // Mostrar todos los jugadores guardados
+            System.out.println("Lista de jugadores en la base:");
+            servicioJugador.findAll().forEach(System.out::println);
 
-
-//            Jugador personaje = repoJugador.findById(18);
-//
-//            System.out.println(personaje);
-//
-//            Iterable<Jugador> personajes = repoJugador.findAll();
-//
-//            personajes.forEach(System.out::println);
-//
-//
-//            repoJugador.deleteAll();
-//            System.out.println(repoJugador.count());
-
-
-            //            Jugador jugador1 = repoJugador.findById(20);
-
-//            System.out.println(jugador1);
-
-//            Optional<Jugador> personaje = repoJugador.findByIdOptional(21);
-//
-//            personaje.ifPresentOrElse(System.out::println, () -> System.out.println("No existe el personaje"));
-
-//            List<Jugador> personajes = repoJugador.buscarJugadorPorDireccion("San capi");
-//
-//            personajes.forEach(System.out::println);
-
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            System.err.println("Error al manejar jugadores: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
-
