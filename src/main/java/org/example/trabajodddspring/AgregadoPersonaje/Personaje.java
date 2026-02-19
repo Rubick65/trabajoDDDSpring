@@ -1,10 +1,25 @@
 package org.example.trabajodddspring.AgregadoPersonaje;
 
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.example.trabajodddspring.AgregadoJugador.Jugador;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-
+@Entity
+@Table(
+        name = "Personaje",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"ID_JUGADOR", "nombrePersonaje"})
+        }
+)
+@Getter
+@Setter
+@NoArgsConstructor
 public class Personaje {
 
     //Posibles clases a elegir
@@ -17,19 +32,35 @@ public class Personaje {
         HUMANO, ORCO, ELFO, ENANO
     }
 
-
-    private int ID_JUGADOR; //Id de jugador
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID_PERSONAJE = 0; //Id del personaje
+
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_JUGADOR", nullable = true)
+    private Jugador jugador; //Id de jugador
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ObjetoInventario> inventario; //Inventario de objetos
+
+    @Column(nullable = false)
     private double capacidadCarga; //Capacidad de carga de objetos
-    private String nombrePersonaje, descripcion, historia; //Nombre,descripcion e historia del personaje
+    @Column(nullable = false)
+    private String nombrePersonaje; //Nombre,descripcion e historia del personaje
+    @Column(nullable = false)
+    private String descripcion;
+    @Column(nullable = false)
+    private String historia;
+
+    @Enumerated(EnumType.STRING)
     private Clase clase; //Clase del personaje
+    @Enumerated(EnumType.STRING)
     private Raza raza; //Raza del personaje
 
     /**
      * Constructor que da valores iniciales a los atributos de clase
      *
-     * @param ID_JUGADOR      id del jugador
+     * @param jugador         id del jugador
      * @param inventario      inventario de objetos
      * @param capacidadCarga  capacidad de carga de objetos del personaje
      * @param nombrePersonaje nombre del personaje
@@ -38,8 +69,8 @@ public class Personaje {
      * @param clase           clase del personaje
      * @param raza            raza del personaje
      */
-    public Personaje(int ID_JUGADOR, List<ObjetoInventario> inventario, double capacidadCarga, String nombrePersonaje, String descripcion, String historia, Clase clase, Raza raza) {
-        this.ID_JUGADOR = ID_JUGADOR;
+    public Personaje(Jugador jugador, List<ObjetoInventario> inventario, double capacidadCarga, String nombrePersonaje, String descripcion, String historia, Clase clase, Raza raza) {
+        this.jugador = jugador;
         this.inventario = inventario;
         this.raza = raza;
         setCapacidadCarga(capacidadCarga);
@@ -47,7 +78,6 @@ public class Personaje {
         setDescripcion(descripcion);
         setHistoria(historia);
         this.clase = clase;
-
     }
 
     public Personaje(List<ObjetoInventario> inventario, double capacidadCarga, String nombrePersonaje, String descripcion, String historia, Clase clase, Raza raza) {
@@ -58,42 +88,6 @@ public class Personaje {
         setDescripcion(descripcion);
         setHistoria(historia);
         this.clase = clase;
-
-    }
-
-
-    //Getters y setters
-
-    public double getCapacidadCarga() {
-        return capacidadCarga;
-    }
-
-    public String getNombrePersonaje() {
-        return nombrePersonaje;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public String getHistoria() {
-        return historia;
-    }
-
-    public Clase getClase() {
-        return clase;
-    }
-
-    public Raza getRaza() {
-        return raza;
-    }
-
-    public List<ObjetoInventario> getInventario() {
-        return inventario;
-    }
-
-    public void setInventario(List<ObjetoInventario> inventario) {
-        this.inventario = inventario;
     }
 
     /**
@@ -124,7 +118,6 @@ public class Personaje {
             default:
                 this.capacidadCarga = capacidadCarga;
                 break;
-
         }
     }
 
@@ -152,26 +145,6 @@ public class Personaje {
             throw new IllegalArgumentException("Historia no puede estar vacío");
 
         this.historia = historia;
-    }
-
-    public void setID_PERSONAJE(int ID_PERSONAJE) {
-        this.ID_PERSONAJE = ID_PERSONAJE;
-    }
-
-    public int getID_PERSONAJE() {
-        return ID_PERSONAJE;
-    }
-
-    public int getID_JUGADOR() {
-        return ID_JUGADOR;
-    }
-
-    public void setID_JUGADOR(int ID_JUGADOR) {
-        this.ID_JUGADOR = ID_JUGADOR;
-    }
-
-    public String revisarInventario() {
-        return inventario.toString();
     }
 
 
@@ -212,7 +185,7 @@ public class Personaje {
     public String toString() {
         return "Personaje{" +
                 "ID_PERSONAJE=" + ID_PERSONAJE +
-                ", ID_JUGADOR=" + ID_JUGADOR +
+                ", ID_JUGADOR=" + jugador +
                 ", inventario=" + inventario +
                 ", capacidadCarga=" + capacidadCarga +
                 ", nombrePersonaje='" + nombrePersonaje + '\'' +

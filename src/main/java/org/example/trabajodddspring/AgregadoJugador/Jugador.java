@@ -14,7 +14,9 @@ import java.util.Objects;
 @Getter
 @Setter
 @NoArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Jugador {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID_JUGADOR;// Id del jugador

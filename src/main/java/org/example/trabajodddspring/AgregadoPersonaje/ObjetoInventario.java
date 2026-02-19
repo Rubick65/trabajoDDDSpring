@@ -1,15 +1,44 @@
 package org.example.trabajodddspring.AgregadoPersonaje;
 
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.Objects;
 
+
+@Entity
+@Table(
+        name = "ObjetoInventario",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"nombre", "descripcionObjeto"})
+        }
+)
+@Getter
+@Setter
+@NoArgsConstructor
 public class ObjetoInventario {
 
     public enum Categoria {
         MALDITO, MAGICO, NORMAL
     }
 
-    private String nombre, descripcionObjeto; //Nombre y descripcion del objeto
-    private double peso; //Peso del objeto
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int ID_OBJETO;
+
+    @Column(nullable = false)
+    private String nombre;
+
+    @Column(nullable = false)
+    private String descripcionObjeto;
+
+    @Column(nullable = false)
+    private double peso;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Categoria categoria;
 
     /**
@@ -31,24 +60,6 @@ public class ObjetoInventario {
         this.peso = peso;
         this.descripcionObjeto = descripcionObjeto;
         this.categoria = categoria;
-    }
-
-    //Getters y setters
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public double getPeso() {
-        return peso;
-    }
-
-    public String getDescripcionObjeto() {
-        return descripcionObjeto;
-    }
-
-    public Categoria getCategoria() {
-        return categoria;
     }
 
     @Override

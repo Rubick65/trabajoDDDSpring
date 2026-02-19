@@ -1,16 +1,34 @@
 package org.example.trabajodddspring.AgregadoJugador;
 
 
-import org.example.trabajodddspring.AgregadoAventura.Repositorio.RepoAventura;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.example.trabajodddspring.AgregadoAventura.Aventura;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@PrimaryKeyJoinColumn(name = "ID_JUGADOR")
 public class DirectorDeJuego extends Jugador {
 
-    private List<Integer> listaAventuras = new ArrayList<>();
-    private int aventuraSeleccionada;
+    @OneToMany( cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "DirectorAventura",
+            joinColumns = @JoinColumn(name = "ID_DIRECTOR"),
+            inverseJoinColumns = @JoinColumn(name = "ID_AVENTURA")
+    )
+    private List<Aventura> listaAventuras = new ArrayList<>();
+
+    @ManyToOne()
+    @JoinColumn(name = "ID_AVENTURA", nullable = true)
+    private Aventura aventuraSeleccionada;
 
     /**
      * Constructor que da valores iniciales a los atributos de clase
@@ -21,7 +39,7 @@ public class DirectorDeJuego extends Jugador {
      * @param listaAventuras Lista con los ids de la o las aventuras que el director de juego está dirigiendo
      *
      */
-    public DirectorDeJuego(String DNI, String nombre, DireccionJuego direccionJuego, List<Integer> listaAventuras) {
+    public DirectorDeJuego(String DNI, String nombre, DireccionJuego direccionJuego, List<Aventura> listaAventuras) {
         super(DNI, nombre, direccionJuego);
         setListaAventuras(listaAventuras);
     }
@@ -38,45 +56,15 @@ public class DirectorDeJuego extends Jugador {
         super(DNI, nombre, direccionJuego);
     }
 
-
-    // Getters y Setters de los atributos
-    public List<Integer> getListaAventuras() {
-        return listaAventuras;
-    }
-
-    private void setListaAventuras(List<Integer> listaAventuras) {
-        this.listaAventuras = listaAventuras;
-    }
-
-    public int getAventuraSeleccionada() {
-        return aventuraSeleccionada;
-    }
-
-
     /**
      * Agrega una aventura al director de juego si y solo si la aventura existe
      *
-     * @param idAventura   id de la aventura a agregar
-     * @param repoAventura Repositorio de aventuras para comprobar
+     * @param idAventura id de la aventura a agregar
      */
-    public void agregarAventura(int idAventura, RepoAventura repoAventura) throws IOException {
-        if (!repoAventura.existsById(idAventura))
-            throw new IllegalArgumentException("No existe ninguna aventura con ese id");
+    public void agregarAventura(Aventura idAventura) throws IOException {
         listaAventuras.add(idAventura);
     }
 
-    /**
-     * Método que pone la aventura que el director de juego dirige en estos momentos
-     *
-     * @param idAventuraSeleccionada Id de la aventura que se quiere seleccionar
-     * @throws Exception Lanza una excepción en caso de que la aventura no se encuentre en la lista de aventuras del director de juego
-     */
-    public void setAventuraSeleccionada(int idAventuraSeleccionada) throws Exception {
-        if (idAventuraSeleccionada != 0)
-            comprobarAventura(idAventuraSeleccionada);
-
-        this.aventuraSeleccionada = idAventuraSeleccionada;
-    }
 
     /**
      * Método que elimina una aventura de la lista de aventuras guardadas del director
