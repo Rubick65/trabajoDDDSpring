@@ -1,9 +1,19 @@
 package org.example.trabajodddspring.AgregadoAventura;
 
 
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.Objects;
 
-
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED) //Identificamos que tendra herencia
+@Table(name = "Aventura")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Aventura {
 
     //Dificultad a elegir
@@ -11,9 +21,18 @@ public class Aventura {
         FACIL, NORMAL, DIFICIL
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID_AVENTURA; //Id de la aventura
+
+    @Column(nullable = false)
     private String nombreAventura; //Nombre de la aventura
+
+    @Column(nullable = false)
     private int duracionSesionesAprox; //Duracion aproximada de las sesiones
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Dificultad dificultad; //Dificultad de aventura
 
     /**
@@ -29,19 +48,6 @@ public class Aventura {
         this.dificultad = dificultad;
     }
 
-    //Getters y setters
-
-    public int getID_AVENTURA() {
-        return ID_AVENTURA;
-    }
-
-    public void setID_AVENTURA(int ID_AVENTURA) {
-        this.ID_AVENTURA = ID_AVENTURA;
-    }
-
-    public String getNombreAventura() {
-        return nombreAventura;
-    }
 
     /**
      * Se actualiza el nombre de la aventura
@@ -56,9 +62,6 @@ public class Aventura {
         this.nombreAventura = nombreAventura;
     }
 
-    public int getDuracionSesionesAprox() {
-        return duracionSesionesAprox;
-    }
 
     /**
      * Se actualiza la duracion aproximada de las sesiones
@@ -73,13 +76,6 @@ public class Aventura {
         this.duracionSesionesAprox = duracionSesionesAprox;
     }
 
-    public Dificultad getDificultad() {
-        return dificultad;
-    }
-
-    public void setDificultad(Dificultad dificultad) {
-        this.dificultad = dificultad;
-    }
 
     @Override
     public String toString() {

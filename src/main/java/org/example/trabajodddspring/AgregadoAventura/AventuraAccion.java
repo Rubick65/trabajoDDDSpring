@@ -1,9 +1,26 @@
 package org.example.trabajodddspring.AgregadoAventura;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.Objects;
 
-public class AventuraAccion extends Aventura{
+@Entity
+@Table(name = "AventuraAccion")
+@Getter
+@Setter
+@NoArgsConstructor
+
+public class AventuraAccion extends Aventura {
+
+    @Column(nullable = false)
     private int cantidadEnemigos; //Cantidad de enemigos
+
+    @Column(nullable = false)
     private int cantidadUbicaciones; //Cantidad de ubicaciones
 
     /**
@@ -20,16 +37,6 @@ public class AventuraAccion extends Aventura{
         this.cantidadUbicaciones = cantidadUbicaciones;
     }
 
-
-    //Getters y setters
-
-    public int getCantidadEnemigos() {
-        return cantidadEnemigos;
-    }
-
-    public int getCantidadUbicaciones() {
-        return cantidadUbicaciones;
-    }
 
     /**
      * Se actualiza la cantidad de enemigos

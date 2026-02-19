@@ -1,8 +1,24 @@
 package org.example.trabajodddspring.AgregadoAventura;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.Objects;
 
+
+@Entity
+@Table(name = "AventuraMisterio")
+@Getter
+@Setter
+@NoArgsConstructor
+
 public class AventuraMisterio extends Aventura {
+
+    @Column(nullable = false)
     private String enigmaPrincipal; //Enigma principal de la aventura
 
     /**
@@ -17,12 +33,6 @@ public class AventuraMisterio extends Aventura {
         this.enigmaPrincipal = enigmaPrincipal;
     }
 
-
-    //Getter
-
-    public String getEnigmaPrincipal() {
-        return enigmaPrincipal;
-    }
 
     @Override
     public boolean equals(Object o) {
