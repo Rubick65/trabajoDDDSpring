@@ -1,9 +1,7 @@
 package org.example.trabajodddspring.Servicio;
 
-import org.example.trabajodddspring.AgregadoAventura.Aventura;
 import org.example.trabajodddspring.AgregadoGrupoJuego.GrupoJuego;
 import org.example.trabajodddspring.AgregadoGrupoJuego.Repositorio.RepoGrupoJuego;
-import org.example.trabajodddspring.AgregadoJugador.Jugador;
 import org.example.trabajodddspring.Interfaces.IRepositorioExtend;
 import org.springframework.stereotype.Service;
 
