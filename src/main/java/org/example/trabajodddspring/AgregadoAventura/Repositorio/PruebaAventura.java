@@ -29,8 +29,21 @@ public class PruebaAventura implements CommandLineRunner {
             servicioAventura.save(a2);
             servicioAventura.save(a3);
 
-            System.out.println("Lista de jugadores en la base:");
+            System.out.println("Lista de aventuras en la base:");
             servicioAventura.findAll().forEach(System.out::println);
+
+            System.out.println("Buscar aventura por id");
+            System.out.println(servicioAventura.findById(1));
+
+            System.out.println("Cantidad aventuras = " + servicioAventura.count());
+
+            System.out.println("Borrando aventura");
+            servicioAventura.deleteById(1);
+
+            System.out.println("Lista de aventuras en la base:");
+            servicioAventura.findAll().forEach(System.out::println);
+
+
 
         } catch (Exception e){
             System.err.println("Error al manejar aventuras: " + e.getMessage());

@@ -25,7 +25,7 @@ public class Aventura {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID_AVENTURA; //Id de la aventura
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String nombreAventura; //Nombre de la aventura
 
     @Column(nullable = false)
