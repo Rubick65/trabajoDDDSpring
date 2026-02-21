@@ -1,4 +1,4 @@
-package org.example.trabajodddspring.AgregadoJugador;
+package org.example.trabajodddspring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

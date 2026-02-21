@@ -3,9 +3,11 @@ package org.example.trabajodddspring.Servicio;
 
 import org.example.trabajodddspring.AgregadoPersonaje.ObjetoInventario;
 import org.example.trabajodddspring.AgregadoPersonaje.Personaje;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class GestorInventario {
 
     /**

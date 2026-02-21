@@ -36,11 +36,12 @@ public class Personaje {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID_PERSONAJE = 0; //Id del personaje
 
-    @ManyToOne(optional = true, fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_JUGADOR", nullable = true)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ID_JUGADOR")
     private Jugador jugador; //Id de jugador
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "ID_PERSONAJE") // <--- ESTA ES LA CLAVE
     private List<ObjetoInventario> inventario; //Inventario de objetos
 
     @Column(nullable = false)

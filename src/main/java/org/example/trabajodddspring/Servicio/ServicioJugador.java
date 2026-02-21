@@ -67,4 +67,12 @@ public class ServicioJugador implements IRepositorioExtend<Jugador, Integer> {
         return this.repoJugador.findByDireccionJuego_calleIgnoreCase(calle);
     }
 
+    public Optional<Jugador> buscarDniPorDireccion(String dni) {
+        return this.repoJugador.findByDniConDireccion(dni);
+    }
+
+    public Long contarPorCalle(String calle) {
+        return this.repoJugador.countByCalle(calle);
+    }
+
 }

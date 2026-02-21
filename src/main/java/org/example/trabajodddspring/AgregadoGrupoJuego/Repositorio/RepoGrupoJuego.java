@@ -8,5 +8,5 @@ import java.util.List;
 
 
 public interface RepoGrupoJuego extends JpaRepository<GrupoJuego, Integer> {
-    List<GrupoJuego> findByJugadores_Id_JUGADOR(Integer idJugador);
+//    List<GrupoJuego> findByJugador_Id_JUGADOR(Integer idJugador);
 }

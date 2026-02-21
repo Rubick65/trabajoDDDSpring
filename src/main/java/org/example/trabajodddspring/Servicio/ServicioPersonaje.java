@@ -67,5 +67,13 @@ public class ServicioPersonaje implements IRepositorioExtend<Personaje, Integer>
         return this.repoPersonaje.findByClaseIgnoreCase(clase);
     }
 
+    public List<Personaje> buscarPorDireccionDeJuego(String dni) {
+        return this.repoPersonaje.findByJugadorDniIgnoreCase(dni);
+    }
+
+    public List<Personaje> buscarPorInicial(char letra) {
+        return this.repoPersonaje.findByNombreIgnoreCase(letra);
+    }
+
 
 }

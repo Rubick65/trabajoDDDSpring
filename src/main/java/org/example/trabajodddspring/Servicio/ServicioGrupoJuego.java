@@ -63,9 +63,9 @@ public class ServicioGrupoJuego implements IRepositorioExtend<GrupoJuego, Intege
     public List<GrupoJuego> findAllToList() {
         return this.repoGrupoJuego.findAll();
     }
-
-    public List<GrupoJuego> buscarPorIdJugadores(Integer idJugador) {
-        return this.repoGrupoJuego.findByJugadores_Id_JUGADOR(idJugador);
-    }
+//
+//    public List<GrupoJuego> buscarPorIdJugadores(Integer idJugador) {
+//        return this.repoGrupoJuego.findByJugadores_Id_JUGADOR(idJugador);
+//    }
 
 }

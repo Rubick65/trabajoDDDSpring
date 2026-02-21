@@ -65,5 +65,4 @@ public class ServicioAventura implements IRepositorioExtend<Aventura, Integer> {
     public List<Aventura> buscarPorDificultad(Aventura.Dificultad dificultad) {
         return this.repoAventura.findByDificultad(dificultad);
     }
-
 }
