@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface RepoPersonaje extends JpaRepository<Personaje, Integer> {
-    List<Personaje> findByClaseIgnoreCase(Personaje.Clase clase);
+    List<Personaje> findByClase(Personaje.Clase clase);
 
     // Query
     @Query("""

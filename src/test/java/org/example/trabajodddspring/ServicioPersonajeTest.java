@@ -91,7 +91,7 @@ public class ServicioPersonajeTest {
         personajes.forEach(System.out::println);
         assertFalse(personajes.isEmpty());
     }
-
+    
     @Test
     void debeDevolverPersonajeInicial() throws Exception {
         servicio.save(p1);
