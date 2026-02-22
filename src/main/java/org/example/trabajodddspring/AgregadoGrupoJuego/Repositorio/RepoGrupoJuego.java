@@ -4,9 +4,12 @@ package org.example.trabajodddspring.AgregadoGrupoJuego.Repositorio;
 import org.example.trabajodddspring.AgregadoGrupoJuego.GrupoJuego;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+
 import java.util.List;
 
 
 public interface RepoGrupoJuego extends JpaRepository<GrupoJuego, Integer> {
-//    List<GrupoJuego> findByJugador_Id_JUGADOR(Integer idJugador);
+
+    //Modificadores y palabras clave
+    List<GrupoJuego> findByJugadores_Id_JUGADOR(Integer idJugador);
 }
