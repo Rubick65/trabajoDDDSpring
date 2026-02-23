@@ -1,6 +1,8 @@
 package org.example.trabajodddspring;
 
 import org.example.trabajodddspring.AgregadoAventura.Aventura;
+import org.example.trabajodddspring.AgregadoAventura.AventuraAccion;
+import org.example.trabajodddspring.AgregadoAventura.AventuraMisterio;
 import org.example.trabajodddspring.AgregadoAventura.Repositorio.RepoAventura;
 import org.example.trabajodddspring.AgregadoPersonaje.Personaje;
 import org.example.trabajodddspring.Servicio.ServicioAventura;
@@ -40,6 +42,18 @@ public class ServicioAventuraTest {
     @Test
     void debeGuardarYContarAventuras() throws Exception {
         servicio.save(a1);
+        assertEquals(1, servicio.count());
+    }
+
+    @Test
+    void debeGuardarYContarAventurasAccion() throws Exception {
+        servicio.save(new AventuraAccion("Espinosa",2, Aventura.Dificultad.FACIL,4,5));
+        assertEquals(1, servicio.count());
+    }
+
+    @Test
+    void debeGuardarYContarAventurasMisterio() throws Exception {
+        servicio.save(new AventuraMisterio("Los canelones",1, Aventura.Dificultad.DIFICIL,"Donde estan"));
         assertEquals(1, servicio.count());
     }
 

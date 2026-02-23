@@ -14,13 +14,13 @@ public interface RepoAventura extends JpaRepository<Aventura, Integer> {
     //Modificadores y palabras clave
     List<Aventura> findByDificultad(Aventura.Dificultad dificultad);
 
-    //Query
-    @Query("select a from Aventura a where a.duracionSesionesAprox = :duracion")
-    List<Aventura> findByDuracion(@Param("duracion") int duracion);
-
     //Native Query
-    @NativeQuery(value = "SELECT * FROM AVENTURA WHERE nombreAventura = ?1")
-    Aventura findByNombreAventura(String nombre);
+    @NativeQuery(value = "SELECT * FROM AVENTURA WHERE duracionSesionesAprox = ?1")
+    List<Aventura> findByDuracion(int duracion);
+
+    //Query
+    @Query("SELECT a FROM Aventura a WHERE a.nombreAventura = :nombre")
+    Aventura findByNombreAventura(@Param("nombre") String nombre);
 
 }
 
