@@ -37,7 +37,6 @@ public class ServicioPersonajeTest {
 
     @BeforeEach
     void setUp() {
-        // 3. Limpiamos antes de cada test para que sean independientes
         repoPersonaje.deleteAll();
 
         // Personaje de prueba

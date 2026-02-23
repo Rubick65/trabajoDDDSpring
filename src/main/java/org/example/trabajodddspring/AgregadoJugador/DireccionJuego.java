@@ -21,7 +21,7 @@ public class DireccionJuego {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idDireccion;
+    private Integer ID_DIRECCION;
 
     @Column(nullable = false)
     private String piso;

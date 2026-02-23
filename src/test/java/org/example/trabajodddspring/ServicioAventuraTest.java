@@ -22,7 +22,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Import({ServicioAventura.class})
-
 public class ServicioAventuraTest {
     @Autowired
     private ServicioAventura servicio;
