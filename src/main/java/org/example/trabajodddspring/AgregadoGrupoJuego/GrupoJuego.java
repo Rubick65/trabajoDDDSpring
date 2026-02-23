@@ -14,7 +14,11 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "GrupoJuego")
+@Table(name = "GrupoJuego",
+        uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"nombreGrupo"})
+        }
+)
 @Getter
 @Setter
 @NoArgsConstructor

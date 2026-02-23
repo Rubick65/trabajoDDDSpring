@@ -10,7 +10,11 @@ import java.util.Objects;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED) //Identificamos que tendra herencia
-@Table(name = "Aventura")
+@Table(name = "Aventura",
+        uniqueConstraints ={
+        @UniqueConstraint(columnNames = {"nombreAventura"})
+        }
+)
 @Getter
 @Setter
 @NoArgsConstructor
