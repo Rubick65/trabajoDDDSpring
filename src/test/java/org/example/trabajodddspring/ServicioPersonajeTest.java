@@ -2,9 +2,9 @@ package org.example.trabajodddspring;
 
 import org.example.trabajodddspring.AgregadoPersonaje.ObjetoInventario;
 import org.example.trabajodddspring.AgregadoPersonaje.Personaje;
-import org.example.trabajodddspring.AgregadoPersonaje.Repositorio.RepoPersonaje;
 import org.example.trabajodddspring.Servicio.GestorInventario;
 import org.example.trabajodddspring.Servicio.ServicioPersonaje;
+import org.example.trabajodddspring.Respositorios.RepoPersonaje;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

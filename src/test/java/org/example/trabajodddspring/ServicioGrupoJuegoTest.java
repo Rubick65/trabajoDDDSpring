@@ -1,11 +1,9 @@
 package org.example.trabajodddspring;
 
 import org.example.trabajodddspring.AgregadoGrupoJuego.GrupoJuego;
-import org.example.trabajodddspring.AgregadoGrupoJuego.Repositorio.RepoGrupoJuego;
-import org.example.trabajodddspring.AgregadoPersonaje.Personaje;
-import org.example.trabajodddspring.Servicio.GestorInventario;
-import org.example.trabajodddspring.Servicio.ServicioAventura;
+import org.example.trabajodddspring.AgregadoJugador.Jugador;
 import org.example.trabajodddspring.Servicio.ServicioGrupoJuego;
+import org.example.trabajodddspring.Servicio.ServicioJugador;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,26 +17,26 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Import({ServicioGrupoJuego.class})
-
+@Import({ServicioGrupoJuego.class, ServicioJugador.class})
 public class ServicioGrupoJuegoTest {
 
     @Autowired
     private ServicioGrupoJuego servicio;
 
     @Autowired
-    private RepoGrupoJuego repoGrupoJuego;
+    private ServicioJugador servicioJugador;
 
     private GrupoJuego g1;
 
     @BeforeEach
     void setUp() throws IOException {
-        repoGrupoJuego.deleteAll();
-        g1 = new GrupoJuego("Los macarrones","Nos gustan los macarrones",new ArrayList<>());
+        servicio.deleteAll();
+        List<Jugador> listaJugadores = new ArrayList<>();
+        listaJugadores.add(servicioJugador.findById(39));
+        g1 = new GrupoJuego("Los macarrones", "Nos gustan los macarrones", listaJugadores);
     }
 
     @Test
@@ -68,7 +66,4 @@ public class ServicioGrupoJuegoTest {
         grupos.forEach(System.out::println);
         assertFalse(grupos.isEmpty());
     }
-
-
-
 }

@@ -1,8 +1,8 @@
 package org.example.trabajodddspring.Servicio;
 
 import org.example.trabajodddspring.AgregadoGrupoJuego.GrupoJuego;
-import org.example.trabajodddspring.AgregadoGrupoJuego.Repositorio.RepoGrupoJuego;
 import org.example.trabajodddspring.Interfaces.IRepositorioExtend;
+import org.example.trabajodddspring.Respositorios.RepoGrupoJuego;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

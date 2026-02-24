@@ -1,14 +1,15 @@
-package org.example.trabajodddspring.AgregadoAventura.Repositorio;
+package org.example.trabajodddspring.Respositorios;
 
 
 import org.example.trabajodddspring.AgregadoAventura.Aventura;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.NativeQuery;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface RepoAventura extends JpaRepository<Aventura, Integer> {
 
     //Modificadores y palabras clave

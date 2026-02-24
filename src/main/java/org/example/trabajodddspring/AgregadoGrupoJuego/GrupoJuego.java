@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.trabajodddspring.AgregadoJugador.Jugador;
-import org.example.trabajodddspring.AgregadoJugador.Repositorio.RepoJugador;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "GrupoJuego",
         uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"nombreGrupo"})
+                @UniqueConstraint(columnNames = {"nombreGrupo"})
         }
 )
 @Getter
@@ -56,7 +55,7 @@ public class GrupoJuego {
         inicializarMiembros(listaMiembros);
     }
 
-    public GrupoJuego(int idGrupo,String nombreGrupo, String descripcion, List<Jugador> listaMiembros) throws IOException {
+    public GrupoJuego(int idGrupo, String nombreGrupo, String descripcion, List<Jugador> listaMiembros) throws IOException {
         this.ID_GRUPO = idGrupo;
         setNombreGrupo(nombreGrupo);
         setDescripcion(descripcion);

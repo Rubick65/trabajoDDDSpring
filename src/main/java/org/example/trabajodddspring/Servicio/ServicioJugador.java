@@ -1,8 +1,8 @@
 package org.example.trabajodddspring.Servicio;
 
 import org.example.trabajodddspring.AgregadoJugador.Jugador;
-import org.example.trabajodddspring.AgregadoJugador.Repositorio.RepoJugador;
 import org.example.trabajodddspring.Interfaces.IRepositorioExtend;
+import org.example.trabajodddspring.Respositorios.RepoJugador;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -66,6 +66,7 @@ public class ServicioJugador implements IRepositorioExtend<Jugador, Integer> {
     public List<Jugador> buscarJugadorPorDireccion(String calle) {
         return this.repoJugador.findByDireccionJuego_calleIgnoreCase(calle);
     }
+    
 
     public Optional<Jugador> buscarDniPorDireccion(String dni) {
         return this.repoJugador.findByDniConDireccion(dni);

@@ -1,8 +1,8 @@
 package org.example.trabajodddspring.Servicio;
 
 import org.example.trabajodddspring.AgregadoPersonaje.Personaje;
-import org.example.trabajodddspring.AgregadoPersonaje.Repositorio.RepoPersonaje;
 import org.example.trabajodddspring.Interfaces.IRepositorioExtend;
+import org.example.trabajodddspring.Respositorios.RepoPersonaje;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;

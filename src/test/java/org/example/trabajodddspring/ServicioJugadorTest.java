@@ -3,15 +3,14 @@ package org.example.trabajodddspring;
 import org.example.trabajodddspring.AgregadoJugador.DireccionJuego;
 import org.example.trabajodddspring.AgregadoJugador.DirectorDeJuego;
 import org.example.trabajodddspring.AgregadoJugador.Jugador;
-import org.example.trabajodddspring.AgregadoJugador.Repositorio.RepoJugador;
 import org.example.trabajodddspring.Servicio.ServicioJugador;
+import org.example.trabajodddspring.Respositorios.RepoJugador;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase;
 import org.springframework.context.annotation.Import;
-import org.springframework.test.annotation.Commit;
 
 import java.util.List;
 import java.util.Optional;
@@ -38,8 +37,8 @@ public class ServicioJugadorTest {
         j1 = new Jugador("12345678A", "Juan", dj);
     }
 
+
     @Test
-    @Commit
     void debeGuardarYContarDirectorDeJuego() throws Exception {
         DireccionJuego dj = new DireccionJuego("Madrid", "Calle del bebito", "1ºC", "28017");
 
@@ -48,8 +47,13 @@ public class ServicioJugadorTest {
         servicio.save(d1);
     }
 
+//    @Test
+//    @Commit
+//    void debeEliminiarJugadores() throws Exception {
+//        repoJugador.deleteAll();
+//    }
+
     @Test
-    @Commit
     void debeGuardarYContarJugadores() throws Exception {
         servicio.save(j1);
         assertEquals(1, servicio.count());
@@ -97,9 +101,7 @@ public class ServicioJugadorTest {
         // j1.getDireccionJuego().setCalle("Avenida Siempre Viva");
         servicio.save(j1);
 
-        // El método del servicio usa findByDireccionJuego_calleIgnoreCase
         List<Jugador> encontrados = servicio.buscarJugadorPorDireccion("Calle Falsa 123");
-        // Nota: Este test pasará si los datos coinciden con lo guardado
         assertNotNull(encontrados);
     }
 

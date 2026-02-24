@@ -1,8 +1,8 @@
 package org.example.trabajodddspring.Servicio;
 
 import org.example.trabajodddspring.AgregadoAventura.Aventura;
-import org.example.trabajodddspring.AgregadoAventura.Repositorio.RepoAventura;
 import org.example.trabajodddspring.Interfaces.IRepositorioExtend;
+import org.example.trabajodddspring.Respositorios.RepoAventura;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
