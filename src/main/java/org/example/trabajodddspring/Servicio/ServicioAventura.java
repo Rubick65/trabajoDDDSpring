@@ -67,12 +67,12 @@ public class ServicioAventura implements IRepositorioExtend<Aventura, Integer> {
         return this.repoAventura.findByDificultad(dificultad);
     }
 
-    //Consulta con Query
-    public List<Aventura> buscarPorDuracion(int duracion) {
-        return this.repoAventura.findByDuracion(duracion);
+    //Consulta con NativeQuery
+    public Long contarPorDuracion(int duracion) {
+        return this.repoAventura.countByDuracion(duracion);
     }
 
-    //Consulta con Native Query
+    //Consulta con Query
     public Aventura buscarPorNombre(String nombreAventura) {
         return this.repoAventura.findByNombreAventura(nombreAventura);
     }

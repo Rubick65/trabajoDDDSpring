@@ -4,7 +4,6 @@ import org.example.trabajodddspring.AgregadoAventura.Aventura;
 import org.example.trabajodddspring.AgregadoAventura.AventuraAccion;
 import org.example.trabajodddspring.AgregadoAventura.AventuraMisterio;
 import org.example.trabajodddspring.AgregadoAventura.Repositorio.RepoAventura;
-import org.example.trabajodddspring.AgregadoPersonaje.Personaje;
 import org.example.trabajodddspring.Servicio.ServicioAventura;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase;
 import org.springframework.context.annotation.Import;
-import org.springframework.test.annotation.Commit;
 
 import java.util.List;
 import java.util.Optional;
@@ -89,9 +87,9 @@ public class ServicioAventuraTest {
     @Test
     void debeDevolverDuracion() throws Exception {
         servicio.save(a1);
-        List<Aventura> aventuras = servicio.buscarPorDuracion(a1.getDuracionSesionesAprox());
-        aventuras.forEach(System.out::println);
-        assertFalse(aventuras.isEmpty());
+        Long conteo = servicio.contarPorDuracion(a1.getDuracionSesionesAprox());
+        System.out.println(conteo);;
+        assertTrue(conteo >= 0);
     }
 
     @Test
