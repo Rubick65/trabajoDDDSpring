@@ -15,14 +15,15 @@ public interface RepoAventura extends JpaRepository<Aventura, Integer> {
     List<Aventura> findByDificultad(Aventura.Dificultad dificultad);
 
     //Native Query
-    @NativeQuery(value = """
-            SELECT a
+    @Query(value = """
+            SELECT COUNT(*)
             FROM Aventura a
-            JOIN AventuraAccion ac on a.ID_AVENTURA = ac.ID_AVENTURA
-            JOIN AventuraMisterio am on a.ID_AVENTURA = am.ID_AVENTURA
-            WHERE duracionSesionesAprox = ?1
-            """)
-    List<Aventura> findByDuracion(int duracion);
+            JOIN AventuraAccion ac ON a.ID_AVENTURA = ac.ID_AVENTURA
+            JOIN AventuraMisterio am ON a.ID_AVENTURA = am.ID_AVENTURA
+            WHERE a.duracionSesionesAprox = ?1
+            """,
+            nativeQuery = true)
+    Long countByDuracion(int duracion);
 
     //Query
     @Query("SELECT a FROM Aventura a WHERE a.nombreAventura = :nombre")
